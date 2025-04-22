@@ -2,7 +2,7 @@ const http = require("http");
 const fs = require('fs').promises;
 
 http
-  .createServer(async (requestAnimationFrame, res) => {
+  .createServer(async (req, res) => {
     try {
       const data = await fs.readFile("./server2.html");
       res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
