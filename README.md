@@ -15,7 +15,6 @@ cealrImmediate (아이디) setImmediate 취소
 
 setImmediate 보다 setTimeout(,0)이 더 빨리 실행됨
 
-
 다이내믹 import 는 promise 라 await을 붙인다
 export default 와 module expots는 다르게 저장되어있다
 exports 와 module exports 는 같이 쓸 수 없다
@@ -34,5 +33,8 @@ hash는 되둘릴수 없다
 
 동기로 4개의 파일을 읽는것과 비동기로 4개의 파일을 읽는데 순서를 지키는것의 차이점은
 요청이 여러번 있을때 동기의 경우 하나하나 다 해결되야 다음으로 넘어가지만 비동기의 경우 백그라운드에서 한꺼번에 처리가 된다
+
+
+25.04.23
 
 http 301,302- 리다이렉트
