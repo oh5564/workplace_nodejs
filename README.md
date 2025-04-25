@@ -46,3 +46,16 @@ http 301,302- 리다이렉트
 a.b.c - a (major), b (minor), c(patch)  
 앞에 ^가 붙으면 minor 버전까지만 업데이트
 앞에 ~가 붙으면 patch 버전까지만 업데이트
+
+
+25.04.25
+
+몽고디비 upsert : 있으면 수정하고 없으면 생성하라 (update문의 옵션) updateOne(조건,수정할내용, {upsert:true})
+
+몽구스 / 시퀄라이즈
+스키마 / 모델
+
+몽구스 polulate - ObjectId를 자동으로 객체로 바꿔준다
+
+
+
