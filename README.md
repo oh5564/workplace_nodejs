@@ -50,4 +50,4 @@ a.b.c - a (major), b (minor), c(patch)
 
 25.04.25
 
-몽고디비 upsert : 있으면 수정하고 없으면 생성하라 (update문의 옵션)
+몽고디비 upsert : 있으면 수정하고 없으면 생성하라 (update문의 옵션) updateOne(조건,수정할내용, {upsert:true})
