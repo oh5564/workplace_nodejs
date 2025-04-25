@@ -55,7 +55,7 @@ a.b.c - a (major), b (minor), c(patch)
 몽구스 / 시퀄라이즈
 스키마 / 모델
 
-polulate - objectId를 자동으로 객체로 바꿔준다
+몽구스 polulate - ObjectId를 자동으로 객체로 바꿔준다
 
 
 
