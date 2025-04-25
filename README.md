@@ -46,3 +46,8 @@ http 301,302- 리다이렉트
 a.b.c - a (major), b (minor), c(patch)  
 앞에 ^가 붙으면 minor 버전까지만 업데이트
 앞에 ~가 붙으면 patch 버전까지만 업데이트
+
+
+25.04.25
+
+몽고디비 upsert : 있으면 수정하고 없으면 생성하라 (update문의 옵션)
