@@ -1,3 +1,2 @@
-D0424/express/.env
-D0425/nodebird/.env
-D0425/nodebird/node_modules
+*.env
+node_modules/

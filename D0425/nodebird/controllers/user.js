@@ -22,6 +22,8 @@ exports.unFollow = async( req,res,next) => {
     if (user) {
       // req.user.id 로그인한 id
       // req.params.id는 언팔로우 하려는 대상 사용자의 id
+      //DELETE FROM Follow
+      //WHERE followingId = :followingId AND followerId = :followerId;
       await user.removeFollowing(parseInt(req.params.id,10)); 
       res.send("success");
     } else {
