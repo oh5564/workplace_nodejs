@@ -20,8 +20,9 @@ exports.unFollow = async( req,res,next) => {
   try {
     const user = await User.findOne({ where: { id: req.user.id } });
     if (user) {
-      // req.user.id가 followerId, req.params.id가 followingId
-      await user.removeFollowing(parseInt(req.params.id,10)); // 팔로우 관계 삭제
+      // req.user.id 로그인한 id
+      // req.params.id는 언팔로우 하려는 대상 사용자의 id
+      await user.removeFollowing(parseInt(req.params.id,10)); 
       res.send("success");
     } else {
       res.status(404).send("no user");
