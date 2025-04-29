@@ -9,7 +9,18 @@ module.exports = () =>{
     });
 
     passport.deserializeUser((id, done)=> { // 매 요청시 실행 passport.session 미들웨어가 이 메서드를 호출 
-        User.findOne({where: {id}})
+        User.findOne({
+            where: {id},
+            include: [{
+                model:User,
+                attributes: ['id','nick'],
+                as: 'Followers',
+            },{
+                model: User,
+                attributes: ['id','nick'],
+                as: 'Followings',
+            }],
+        })
         .then(user=>done(null,user)) // req.user에 로그인한 사용자 정보 저장
         .catch(err=>done(err));
     });

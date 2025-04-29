@@ -1,29 +1,22 @@
-const express = require('express');
-const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
-const router =express.Router();
+const express = require("express");
+const { isLoggedIn, isNotLoggedIn } = require("../middlewares");
+const {renderProfile, renderJoin, renderMain, renderHashtag} = require('../controllers/page');
+const router = express.Router();
 
-router.use((req,res,next) =>{
-    res.locals.user=req.user; 
-    res.locals.followerCount=0;
-    res.locals.followingCount=0;
-    res.locals.fowwerIdList=[];
-    next();
+router.use((req, res, next) => {
+  res.locals.user = req.user;
+  res.locals.followerCount = req.user?.Followers?.length || 0;
+  res.locals.followingCount = req.user?.Followings?.length || 0;
+  res.locals.followingIdList = req.user?.Followings?.map(f=>f.id)||[]; // 팔로워 아이디 리스트에 게시글 작성자의 아이디가 존재 하지 않으면 팔로우 버튼을 보여주기 위해 삽입
+  next();
 });
 
-router.get('/profile', isLoggedIn, (req,res) => {
-    res.render('profile', {title: '내 정보 - NodeBird'});
-});
+router.get("/profile", isLoggedIn, renderProfile);
 
-router.get('/join', isNotLoggedIn, (req,res) =>{
-    res.render('join', {title: '회원가입 - NodeBird'});
-});
+router.get("/join", isNotLoggedIn, renderJoin);
 
-router.get('/', (req,res,next) =>{
-    const twits=[];
-    res.render('main', {
-        title: 'NodeBird',
-        twits,
-    })
-})
+router.get("/", renderMain);
+
+router.get('/hashtag', renderHashtag)
 
 module.exports = router;
