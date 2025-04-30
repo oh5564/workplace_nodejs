@@ -58,4 +58,11 @@ a.b.c - a (major), b (minor), c(patch)
 몽구스 polulate - ObjectId를 자동으로 객체로 바꿔준다
 
 
+25.04.30
+
+10.5 - get /posts/my , get /posts/hashtag/:title 라우터 추가, api 이용하는 코드 추가
+10.6 - 사용량 제한 (express-rate-limit) 구현, deprecated 미들웨어 추가 (오래된 버전 or 사용하면 안되는 라우터에 붙여줌)
+10.7 - 브라우저와 서버의 도메인이 일치하지 않으면 기본적으로 요청이 차단되는데 이 문제를 cors 라고 부른다 서버에서 cors 패키지를 설치한후 추가해준다
+서버측에서 도메인 모델로 클라이언트의 도메인과 호스트가 일치하는것이 있는지 검사후 cors를 허용해서 다음 미들웨어로 보내고 없다면 cors없이 next를 호출해서 모든 클라이언트의 요청을 허용하는것을 방지한다
+
 
