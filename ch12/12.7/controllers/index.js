@@ -50,23 +50,17 @@ exports.enterRoom = async (req, res, next) => {
     }
     const io = req.app.get("io");
     const { rooms, sids } = io.of("/chat").adapter; //방 목록이 들어잇음
-    const roomData = rooms.get(req.params.id);
-    const users = roomData
-      ? Array.from(roomData).map((socketId) => sids.get(socketId)?.user)
-      : []; // 서버에서 초기 사용자 목록 전달
     console.log(rooms, rooms.get(req.params.id));
     if (room.max <= rooms.get(req.params.id)?.size) {
       // adapter 객체에서 제공하는 Map의 구조의 값. 이 값은 특정 방에 연결된 클라이언트(소캣)의 수를 나타냄
       return res.redirect(`/?error=허용 인원이 초과하였습니다.`);
     }
     const chats = await Chat.find({ room: room._id }).sort("createdAt"); // 기존 채팅내역 불러오기
-    
     return res.render("chat", {
       room,
       title: room.title,
       chats,
       user: req.session.color,
-      users,
     });
   } catch (err) {
     console.error(err);
