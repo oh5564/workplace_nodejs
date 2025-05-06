@@ -38,3 +38,4 @@ class User extends Sequelize.Model {
     db.User.hasMany(db.Auction);
   }
 }
+module.exports = User;
