@@ -105,9 +105,10 @@ exports.bid = async (req, res, next) => {
       include: { model: Auction }, // 상품과 연관된 입찰(Auction) 데이터를 가져옴
       order: [[{ model: Auction }, "bid", "DESC"]], //입찰 금액(bid)을 기준으로 내림차순 정렬
     });
-
-    if (!good) {
-      return res.status(404).send("해당 상품은 존재하지 않습니다.");
+    
+    // 물품 등록자가 입찰을 시도하는 경우 차단
+    if (good.OwnerId === req.user.id) {
+      return res.status(403).send("물품 등록자는 입찰할 수 없습니다.");
     }
 
     // 입찰 금액이 시작 가격보다 낮거나 같은 경우
@@ -148,10 +149,11 @@ exports.bid = async (req, res, next) => {
 
 exports.renderList = async (req, res, next) => {
   try {
+    // 로그인한 사용자가 낙찰받은 상품 목록 조회
     const goods = await Good.findAll({
-      where: { SoldId: req.user.id }, // 로그인한 사용자 id가 구입한 물건들 보여줌
-      include: { model: Auction },
-      order: [[{ model: Auction }, "bid", "DESC"]],
+      where: { SoldId: req.user.id }, // SoldId가 로그인한 사용자의 Id와 일치하는 상품 조회
+      include: { model: Auction }, // 각 상품과 연관된 입찰 데이터를 포함
+      order: [[{ model: Auction }, "bid", "DESC"]], // 입찰금액을 내림차순 정렬하여 낙찰자의 내역이 가장 위에 오도록
     });
     res.render("list", { title: "낙찰 목록 - NodeAuction", goods });
   } catch (err) {
